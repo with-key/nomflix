@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Header = styled.header`
   display: flex;
+  align-items: center;
   color: #fff;
   width: 100%;
   height: 50px;
@@ -16,33 +17,40 @@ const Header = styled.header`
 `;
 const List = styled.ul`
   display: flex;
-  width: 20%;
-  height: 100%;
-  padding-left: 20px;
-  justify-content: space-around;
-  align-items: center;
+  margin-left: 20px;
 `;
 
 const SLink = styled(Link)`
-  padding: 20px 0 20px 0;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-const WithHeader = withRouter((props) => (
+const Item = styled.li`
+  display: flex;
+  justify-content: center;
+  width: 80px;
+  height: 50px;
+  border-bottom: 5px solid ${(props) => (props.current ? "red" : "transparent")};
+  transition: border-bottom 400ms ease-in-out;
+`;
+
+const WithHeader = withRouter(({ location: { pathname } }) => (
   <Header>
-    {console.log(props)}
     <List>
-      <li>
+      <Item current={pathname === "/"}>
         <SLink to="/">Movies</SLink>
-      </li>
-      <li>
+      </Item>
+      <Item current={pathname === "/tv"}>
         <SLink to="/tv">TV</SLink>
-      </li>
-      <li>
+      </Item>
+      <Item current={pathname === "/search"}>
         <SLink to="/search">Search</SLink>
-      </li>
-      <li>
+      </Item>
+      <Item current={pathname === "/detail"}>
         <SLink to="/detail">Detail</SLink>
-      </li>
+      </Item>
     </List>
   </Header>
 ));
