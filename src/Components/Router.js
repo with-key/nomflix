@@ -4,7 +4,6 @@ import Home from "Routes/Home";
 import TV from "Routes/TV";
 import Search from "Routes/Search";
 import Header from "./Header.js";
-import Detail from "../Routes/Detail";
 
 export default () => (
   <BrowserRouter>
@@ -13,7 +12,6 @@ export default () => (
       <Route path="/" exact component={Home} />
       <Route path="/tv" component={TV} />
       <Route path="/search" component={Search} />
-      <Route path="/detail" component={Detail} />
       <Route path="/">Not Found</Route>
     </Switch>
   </BrowserRouter>
