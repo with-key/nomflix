@@ -1,22 +1,22 @@
 import React from "react";
-import SearchPresenter from "./SearchPresenter.js";
+import SearchPresenter from "./SearchPresenter";
 
 export default class extends React.Component {
-  steate = {
-    nowPlaying: null,
-    upcoming: null,
-    popular: null,
+  state = {
+    movieResults: null,
+    tvResults: null,
+    searchTerm: "",
     error: null,
-    loading: true,
+    loading: false,
   };
 
-  redner() {
-    const { nowPlaying, upcoming, popular, error, loading } = this.state;
+  render() {
+    const { movieResults, tvResults, searchTerm, error, loading } = this.state;
     return (
       <SearchPresenter
-        nowPlaying={nowPlaying}
-        upcoming={upcoming}
-        popular={popular}
+        movieResults={movieResults}
+        tvResults={tvResults}
+        searchTerm={searchTerm}
         error={error}
         loading={loading}
       />

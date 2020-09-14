@@ -3,20 +3,20 @@ import TVPresenter from "./TVPresenter.js";
 
 export default class extends React.Component {
   steate = {
-    nowPlaying: null,
-    upcoming: null,
+    topRated: null,
     popular: null,
+    airingToday: null,
     error: null,
     loading: true,
   };
 
   redner() {
-    const { nowPlaying, upcoming, popular, error, loading } = this.state;
+    const { topRated, popular, airingToday, error, loading } = this.state;
     return (
       <TVPresenter
-        nowPlaying={nowPlaying}
-        upcoming={upcoming}
+        topRated={topRated}
         popular={popular}
+        airingToday={airingToday}
         error={error}
         loading={loading}
       />

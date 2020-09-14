@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "Routes/Home";
 import TV from "Routes/TV";
+import Header from "Components/Header";
 import Search from "Routes/Search";
-import Header from "./Header.js";
 
 export default () => (
   <BrowserRouter>
@@ -16,3 +16,4 @@ export default () => (
     </Switch>
   </BrowserRouter>
 );
+ 
