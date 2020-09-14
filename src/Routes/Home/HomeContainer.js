@@ -1,6 +1,6 @@
 import React from "react";
-import HomePresenter from "./HomePresenter";
 import { moviesApi } from "../../api";
+import HomePresenter from "./HomePresenter";
 
 export default class extends React.Component {
   //최초 컴포넌트의 상태
@@ -21,7 +21,7 @@ export default class extends React.Component {
       } = await moviesApi.nowPlaying();
       const {
         data: { results: upcoming },
-      } = await moviesApi.Upcoming();
+      } = await moviesApi.upcoming();
       const {
         data: { results: popular },
       } = await moviesApi.popular();
@@ -50,7 +50,7 @@ export default class extends React.Component {
   render() {
     const { nowPlaying, upcoming, popular, error, loading } = this.state;
     //render하고 state가 또 변경된다
-    console.log("this.state :>> ", this.state);
+
     return (
       <HomePresenter
         nowPlaying={nowPlaying}

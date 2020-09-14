@@ -48,9 +48,6 @@ const WithHeader = withRouter(({ location: { pathname } }) => (
       <Item current={pathname === "/search"}>
         <SLink to="/search">Search</SLink>
       </Item>
-      <Item current={pathname === "/detail"}>
-        <SLink to="/detail">Detail</SLink>
-      </Item>
     </List>
   </Header>
 ));

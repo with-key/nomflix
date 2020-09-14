@@ -10,10 +10,9 @@ export default () => (
     <Header />
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/tv" component={TV} />
+      <Route path="/tv" exact component={TV} />
       <Route path="/search" component={Search} />
       <Route path="/">Not Found</Route>
     </Switch>
   </BrowserRouter>
 );
- 

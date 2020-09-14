@@ -21,7 +21,7 @@ const api = axios.create({
 // 2단계 : 각 페이지별 api정보를 get을 이용하여 가져온다 (url 작성 유의)
 export const moviesApi = {
   nowPlaying: () => api.get("movie/now_playing"),
-  Upcoming: () => api.get("movie/upcoming"),
+  upcoming: () => api.get("movie/upcoming"),
   popular: () => api.get("movie/popular"),
   movie: (id) =>
     api.get(`movie/${id}`, {
@@ -37,8 +37,8 @@ export const moviesApi = {
     }),
 };
 
-export const TVApi = {
-  topRated: () => api.goet("tv/top_rated"),
+export const tvApi = {
+  topRated: () => api.get("tv/top_rated"),
   popular: () => api.get("tv/popular"),
   airingToday: () => api.get("tv/airing_today"),
   showDetail: (id) =>
