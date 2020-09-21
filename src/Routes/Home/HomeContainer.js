@@ -3,7 +3,6 @@ import { moviesApi } from "../../api";
 import HomePresenter from "./HomePresenter";
 
 export default class extends React.Component {
-  //최초 컴포넌트의 상태
   state = {
     nowPlaying: null,
     upcoming: null,
@@ -25,14 +24,12 @@ export default class extends React.Component {
       const {
         data: { results: popular },
       } = await moviesApi.popular();
-      //상태변경 -> nowPlaying : nowPlaying (es6 문법적용해서 축약함)
+
       this.setState({
         nowPlaying,
         upcoming,
         popular,
       });
-
-      //try : 뭔가를 작동시킨다
     } catch {
       //catch : 작동하지 않으면, catch가 다른 처리를 해줄 것이고 (보통 error)
       this.setState({
@@ -47,10 +44,10 @@ export default class extends React.Component {
     }
   }
 
+  //render가 실행되고 componentDidMount가 실행
   render() {
     const { nowPlaying, upcoming, popular, error, loading } = this.state;
-    //render하고 state가 또 변경된다
-
+    //HomePresenter에 props를 설정하고, props를 받아 실행된다.
     return (
       <HomePresenter
         nowPlaying={nowPlaying}
