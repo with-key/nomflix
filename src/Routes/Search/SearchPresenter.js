@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Loader from "../../Components/Loader";
+import Section from "../../Components/Section";
 
 const Container = styled.div`
   padding: 0 20px;
@@ -32,7 +34,27 @@ const SearchPresenter = ({
         onChange={undateTerm}
       ></Input>
     </Form>
+    {loading ? (
+      <Loader />
+    ) : (
+      movieResults &&
+      movieResults.length > 0 && (
+        <Section title="Movie Results">
+          {movieResults.map((movie) => (
+            <span>{movie.title}</span>
+          ))}
+        </Section>
+      )
+    )}
   </Container>
+
+  // {tvResults && tvResults.length > 0 && (
+  //   <Section title="Tv Shows">
+  //     {tvResults.map((show) => (
+  //       <span>{show.name}</span>
+  //     ))}
+  //   </Section>
+  // )}
 );
 
 SearchPresenter.propTypes = {
