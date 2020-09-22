@@ -9,6 +9,7 @@ const Container = styled.div`
 `;
 
 //삼항연산자로 api 로딩 후에 component가 보여지도록 설정함
+
 const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
   loading ? (
     <Loader />
@@ -18,7 +19,6 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
         <Section title="Now playing">
           {nowPlaying.map((movie) => (
             <div>
-              
               <span key={movie.id}>{movie.title}</span>
             </div>
           ))}
