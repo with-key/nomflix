@@ -6,6 +6,8 @@ import Section from "../../Components/Section";
 
 const Container = styled.div`
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
 `;
 const Form = styled.form`
   margin-bottom: 50px;
@@ -26,36 +28,44 @@ const SearchPresenter = ({
   handleSubmit,
   undateTerm,
 }) => (
-  <Container>
-    <Form onSubmit={handleSubmit}>
-      <Input
-        placeholder="Search Movies or TV Shows..."
-        value={searchTerm}
-        onChange={undateTerm}
-      ></Input>
-    </Form>
-    {loading ? (
-      <Loader />
-    ) : (
-      movieResults &&
-      movieResults.length > 0 && (
-        <Section title="Movie Results">
-          {movieResults.map((movie) => (
-            <span>{movie.title}</span>
-          ))}
-        </Section>
-      )
-    )}
-  </Container>
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        <Input
+          placeholder="Search Movies or TV Shows..."
+          value={searchTerm}
+          onChange={undateTerm}
+        ></Input>
+      </Form>
+      {
+        loading ? (
+          <Loader />
+        ) : (
+            <>
+              {movieResults && movieResults.length > 0 && (
+                <Section title="Movie Results">
+                  {movieResults.map((movie, id) => (
+                    <Card key={id} path={movie.poster_path}></Card>
+                  ))}
+                </Section>
+              )}
+              {tvResults && tvResults.length > 0 && (
+                <Section title="TV Show Results">
+                  {tvResults.map((show) => (
+                    <span key={show.id}>{show.name}</span>
+                  ))}
+                </Section>
+              )}
+            </>
+          )
+      }
+    </Container >
+  );
 
-  // {tvResults && tvResults.length > 0 && (
-  //   <Section title="Tv Shows">
-  //     {tvResults.map((show) => (
-  //       <span>{show.name}</span>
-  //     ))}
-  //   </Section>
-  // )}
-);
+const Card = styled.img`
+  background-image: ${({ path }) => path && `url("https://image.tmdb.org/t/p/w600_and_h900_bestv2/${path}")`};
+  width: 120px;
+  height: auto;
+`;
 
 SearchPresenter.propTypes = {
   movieResults: PropTypes.array,
