@@ -40,6 +40,7 @@ export default class extends React.Component {
     const { topRated, popular, airingToday, loading, error } = this.state;
     console.log(this.state);
     return (
+      
       <TVPresenter
         topRated={topRated}
         popular={popular}
@@ -47,6 +48,7 @@ export default class extends React.Component {
         loading={loading}
         error={error}
       />
+      
     );
   }
 }
