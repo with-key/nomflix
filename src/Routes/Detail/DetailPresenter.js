@@ -10,4 +10,6 @@ DetailPresenter.propTypes = {
   error: PropTypes.string,
 };
 
+
+
 export default DetailPresenter;

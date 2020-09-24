@@ -11,8 +11,16 @@ export default class extends React.Component {
     loading: false,
   };
 
-  handleSubmit = () => {
+  undateTerm = (event) => {
     const { searchTerm } = this.state;
+    const value = event.target.value;
+    this.setState({ searchTerm: value });
+    console.log(searchTerm);
+  };
+
+  handleSubmit = (event) => {
+    const { searchTerm } = this.state;
+    event.preventDefault();
     if (searchTerm !== "") {
       this.searchByTerm();
     }
@@ -41,7 +49,6 @@ export default class extends React.Component {
 
   render() {
     const { movieResults, tvResults, searchTerm, error, loading } = this.state;
-    console.log(this.state);
     return (
       <SearchPresenter
         movieResults={movieResults}
@@ -49,6 +56,8 @@ export default class extends React.Component {
         searchTerm={searchTerm}
         error={error}
         loading={loading}
+        handleSubmit={this.handleSubmit}
+        undateTerm={this.undateTerm}
       />
     );
   }
