@@ -3,28 +3,74 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const ImageContainer = styled.div``;
-const Conatainer = styled.div``;
-const Image = styled.div``;
-const Rating = styled.span``;
-const Title = styled.span``;
-const Year = styled.span``;
+const Conatainer = styled.div`
+  font-size: 12px;
+`;
 
-const Poster = ({ imageUrl, title, rating, year, id, isMovie }) => (
-  <Link to={isMovie ? `/moive/${id}` : `/show${id}`}>
+const Image = styled.div`
+  background-image: url(${(props) => props.bgUrl});
+  height: 180px;
+  background-size: cover;
+  border-radius: 4px;
+  background-position: center center;
+  transition: opacity 0.1s linear;
+`;
+
+const Rating = styled.span`
+  bottom: 5px;
+  right: 5px;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.1s linear;
+`;
+
+const ImageContainer = styled.div`
+  margin-bottom: 5px;
+  position: relative;
+  &:hover {
+    ${Image} {
+      opacity: 0.3;
+    }
+
+    ${Rating} {
+      opacity: 1;
+    }
+  }
+`;
+
+const Title = styled.span`
+  display: block;
+  margin-bottom: 3px;
+`;
+
+const Year = styled.span`
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  display: block;
+`;
+
+const Poster = ({ imageUrl, title, id, rating, year, isMovie }) => (
+  <Link to={isMovie ? `/movie/${id}` : `/show/${id}`}>
     <Conatainer>
       <ImageContainer>
-        <Image bgUrl={imageUrl}></Image>
         <Rating>
-          {rating}
           <span role="img" aria-label="rating">
             ⭐️
-          </span>{" "}
-          {rating}/10
+          </span>
+          <span> {rating}/10</span>
         </Rating>
-        <Title>{title}</Title>
-        <Year>{year}</Year>
+        <Image
+          bgUrl={
+            imageUrl
+              ? `https://image.tmdb.org/t/p/w500${imageUrl}`
+              : require("../assets/noPosterSmall.png") // require 의 용도?
+          }
+        ></Image>
       </ImageContainer>
+      <Title>
+        {title.length > 15 ? `${title.substring(0, 15)}...` : title}
+      </Title>
+      <Year>{year}</Year>
     </Conatainer>
   </Link>
 );

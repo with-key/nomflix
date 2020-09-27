@@ -6,9 +6,9 @@ const api = axios.create({
   params: {
     api_key: "a6dccd2369a00f11dec430b75421bb4b",
     language: "en-US",
+    append_to_response: "videos",
   },
 });
-
 
 //export 할 api 생성
 
@@ -16,12 +16,7 @@ export const moviesApi = {
   nowPlaying: () => api.get("movie/now_playing"),
   upcoming: () => api.get("movie/upcoming"),
   popular: () => api.get("movie/popular"),
-  movie: (id) =>
-    api.get(`movie/${id}`, {
-      append: {
-        appeend_to_response: "videos",
-      },
-    }),
+  movieDetail: (id) => api.get(`movie/${id}`),
   search: (term) =>
     api.get("search/movie", {
       params: {
@@ -37,7 +32,7 @@ export const tvApi = {
   showDetail: (id) =>
     api.get(`tv/${id}`, {
       append: {
-        appeend_to_response: "videos",
+        append_to_response: "videos",
       },
     }),
   search: (term) =>
