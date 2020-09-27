@@ -45,29 +45,34 @@ const Cover = styled.div`
 
 const Data = styled.div`
   width: 70%;
-  margin-left: 10px;
+  margin-left: 48px;
 `;
 
 const Title = styled.h3`
-  font-size: 32px;
+  font-size: 100px;
   display: inline-block;
+  padding: 20px;
+  position: relative;
+  z-index: 2;
 `;
 
 const ItemContainer = styled.div`
   margin: 20px 0;
 `;
 
-const Item = styled.span``;
+const Item = styled.span`
+  font-size: 48px;
+`;
 
 const Divider = styled.span`
   margin: 0 10px;
 `;
 
 const Overview = styled.p`
-  font-size: 12px;
+  font-size: 24px;
   opacity: 0.7;
   line-height: 1.5;
-  width: 50%;
+  width: 100%;
 `;
 
 const IMDBBtn = styled.span`
@@ -77,6 +82,8 @@ const IMDBBtn = styled.span`
   margin-left: 15px;
   /* 과제 : 조건부 CSS */
   display: ${(props) => (props.isImdb ? "inline" : "none")};
+  position: relative;
+  z-index: 12;
 `;
 
 const VideosContainer = styled.div`
@@ -102,11 +109,20 @@ const DetailPresenter = ({ result, loading, error, isMovie }) =>
         } | Nomflix`}</title>
       </Helmet>
       <Backdrop
-        bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
+        bgImage={`https://image.tmdb.org/t/p/original${result.poster_path}`}
       />
+      <Title>
+        {result.original_title ? result.original_title : result.original_name}
+      </Title>
+      <IMDBBtn isImdb={result.imdb_id ? result.imdb_id : ""}>
+        <a target="blank" href={`https://www.imdb.com/title/${result.imdb_id}`}>
+          IMDB
+        </a>
+      </IMDBBtn>
       <VideosContainer>
         <ReactPlayer
           width="100%"
+          height="50vh"
           playing
           url={`https://www.youtube.com/watch?v=${result.videos.results.map(
             (v) => v.key
@@ -114,28 +130,16 @@ const DetailPresenter = ({ result, loading, error, isMovie }) =>
         ></ReactPlayer>
       </VideosContainer>
       <Content>
-        <Cover
+        {/* <Cover
           bgImage={
             result.poster_path
               ? `https://image.tmdb.org/t/p/original${result.poster_path}`
               : require("../../assets/noPosterSmall.png")
           }
-        />
+        /> */}
         <Data>
-          <Title>
-            {result.original_title
-              ? result.original_title
-              : result.original_name}
-          </Title>
           {/* 과제 : api에 imdb_id가 있으면 버튼이 활성화 되고, 없으면 안보임  */}
-          <IMDBBtn isImdb={result.imdb_id ? result.imdb_id : ""}>
-            <a
-              target="blank"
-              href={`https://www.imdb.com/title/${result.imdb_id}`}
-            >
-              IMDB
-            </a>
-          </IMDBBtn>
+
           <ItemContainer>
             <Item>
               {result.release_date
